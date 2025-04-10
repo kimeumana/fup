@@ -109,6 +109,46 @@
   <footer>
     <p>&copy; 2025 Purple & Royal Blue Co. All rights reserved.</p>
   </footer>
+  <script>
+  // Dynamic greeting based on time of day
+  window.addEventListener('DOMContentLoaded', () => {
+    const homeSection = document.querySelector('#home');
+    const greeting = document.createElement('p');
+    const hour = new Date().getHours();
+
+    if (hour < 12) {
+      greeting.textContent = 'Good morning! Glad to see you here.';
+    } else if (hour < 18) {
+      greeting.textContent = 'Good afternoon! Hope your day is going well.';
+    } else {
+      greeting.textContent = 'Good evening! Thanks for visiting.';
+    }
+
+    homeSection.appendChild(greeting);
+  });
+
+  // Simple nav highlight on scroll
+  const sections = document.querySelectorAll('main section');
+  const navLinks = document.querySelectorAll('nav a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 80;
+      if (pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+
 
 </body>
 </html>
